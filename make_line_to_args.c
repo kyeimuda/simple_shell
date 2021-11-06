@@ -19,15 +19,16 @@ char delim[] = " \n\t";
 
 char **_args(void)
 {
-  string = (char*) malloc(size);                 
-  bytes_read = getline(&string, &size, stdin);   
-  tokens = strtok(string, delim);                
-  argv = (char**)malloc(bytes_read);             
-  for(i = 0; tokens != NULL; i++)                
-    {                                              
-      argv[i] = strdup(tokens);
-      tokens = strtok(NULL, delim);
-    }argv[i] = tokens;
-
-  return argv;
+string = (char*) malloc(size);                 
+bytes_read = getline(&string, &size, stdin);   
+tokens = strtok(string, delim);                
+argv = (char**)malloc(bytes_read);             
+for(i = 0; tokens != NULL; i++)                
+{                                              
+argv[i] = strdup(tokens);
+tokens = strtok(NULL, delim);
+}
+argv[i] = tokens;
+free(string);
+return argv;
 }
